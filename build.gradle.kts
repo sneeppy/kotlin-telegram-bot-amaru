@@ -4,7 +4,7 @@ plugins {
 }
 
 tasks.dokkaHtml {
-    outputDirectory.set(file("C:\\Users\\Павел\\IdeaProjects\\Amaru\\build\\dokka\\html"))
+    outputDirectory.set(file("C:\\Users\\Павел\\IdeaProjects\\kotlin-telegram-bot-amaru\\build\\dokka\\html"))
 
     dokkaSourceSets {
         configureEach {
