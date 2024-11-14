@@ -13,13 +13,27 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow
 
-
+/**
+ * Класс Bot наследует TelegramLongPollingBot и реализует основную логику бота,
+ * работающего на платформе Telegram. Этот бот реагирует на входящие обновления (сообщения),
+ * обрабатывает текстовые команды и отправляет ответные сообщения и фотографии.
+ */
 class Bot : TelegramLongPollingBot() {
 
+    /**
+     * Метод getBotToken возвращает токен для аутентификации бота.
+     *
+     * @return Строка токена, используемого для доступа к Telegram Bot API.
+     */
     override fun getBotToken(): String {
         return "7785059012:AAGDOz-CWlAa4pT2gbDABs-sVQSrXxjtGa0"
     }
 
+    /**
+     * Метод getBotUsername возвращает имя пользователя бота.
+     *
+     * @return Имя пользователя, зарегистрированное для бота.
+     */
     override fun getBotUsername(): String {
         return "@pisyat_dva_story_bot"
     }
@@ -52,6 +66,7 @@ class Bot : TelegramLongPollingBot() {
             "\nРазжигая небольшой костер, вы углубляетесь в дневник Эдмунда, надеясь найти дополнительные подсказки о его приключениях. Каждая страница наполнена его переживаниями и наблюдениями, и вы чувствуете, что стали ближе к дяде, несмотря на расстояние и время. Лунный свет освещает страницы, и вы ловите себя на мысли, что ваши судьбы переплетены не только через кровь, но и через общие стремления и мечты.\n" +
             "Ночь постепенно окутывает джунгли, и вам не дает покоя предчувствие того, что на следующее утро вам предстоит двигаться вглубь неизведанных территорий, полных тайн и, возможно, опасностей. Вы решаете, что настраиваться на завтрашние испытания нужно с ясной головой, и, завернувшись в спальный мешок, позволяете себе немного отдохнуть.\n" +
             "\nСны, о которых вы мечтаете, смешиваются с реальностью: духи инков, потерянные сокровища и загадочные ловушки становятся частью вашей жизни, и вы понимаете, что ваше приключение только начинается. На следующее утро вы проснетесь с новыми силами и готовы продолжить поиски, чтобы разгадать тайны не только судьбы Эдмунда, но и древнего города Амару. С каждым шагом вы приближаетесь к чему-то большему — к знаниям и открытиям, которые могут навсегда изменить ваше представление о прошлом."
+
     private val Glava2Text1 = "Проснувшись на острове, ты чувствуешь, как начинает бить волнение перед началом нового этапа. Ты собираешь всё необходимое: карту, компас, дневник Эдмунда и вещи из его лагеря. Приплыв на большой остров на лодке, ты понимаешь, что впереди ждет нечто неизвестное. Густые джунгли скрывают свои секреты в листве, затмевающей солнечные лучи, и ветер приносит с собой ароматы влажной земли и прелых листьев.\n" +
             "\nОриентируясь по карте и компасу, ты начинаешь свой путь. Джунгли окружают тебя, образуя почти непроходимую стену из лиан, переплетенных стволов и кустарников, через которые пробираться становится всё сложнее. С каждым шагом глубина джунглей словно поглощает тебя, заставляя нащупывать дорогу и внимательно прислушиваться к звукам вокруг.\n"
     private val Glava2Text21 = "Внезапно, пробиваясь через заросли, ты замечаешь впереди движение. На мгновение замираешь, но вскоре осознаешь, что это человек. Подойдя ближе, ты видишь молодую женщину с темными волосами, оплетёнными цветами и лианами, словно природным оберегом. Она наблюдает за тобой с интересом, но без страха — ты сразу понимаешь, что перед тобой кто-то, кто чувствует себя здесь как дома.\n" +
@@ -100,22 +115,40 @@ class Bot : TelegramLongPollingBot() {
             "\n— Все эти пометки твои, — заканчивает он. — Но не забудь: я жду два камня из замка Амару.\n"
     private val Glava2Text5 = "Попрощавшись с Доном Хосе, вы понимаете, что стоите перед выбором. От того, какой путь вы выберете, зависит то, что откроется вам в этих диких и неизведанных джунглях и с какими трудностями придётся столкнуться на пути к Амару. Выбирайте с умом. Каждый путь хранит в себе опасности и сокровища."
 
-
     private val buttons = listOf("/start", "Зачилиться", "Ехать", "Отправиться в путешествие","Приступить к головоломке","Продолжить",
         "И что мне делать?", "Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду", "Рандом")
 
-
+    /**
+     * Метод onUpdateReceived вызывается при получении нового обновления.
+     *
+     * @param update Объект Update, представляющий входящее сообщение или событие от пользователя.
+     */
     override fun onUpdateReceived(update: Update) {
         if (update.hasMessage() && update.message.hasText()) {
 
+            /**
+             * Получает текст сообщения, отправленного пользователем.
+             */
             val messageText = update.message.text
+
+            /**
+             * Получает идентификатор чата для отправки ответного сообщения.
+             */
             val chatId = update.message.chatId
 
+            /**
+             * Создает объект `SendMessage` для сообщения об ошибке.
+             * Устанавливает идентификатор чата и текст, чтобы предупредить пользователя
+             * о необходимости нажимать только на кнопки.
+             */
             val errorMessage = SendMessage()
             errorMessage.chatId = chatId.toString()
             errorMessage.text = "Пожалуйста, нажимайте только на кнопки."
 
-
+            /**
+             * Создает объект `SendMessage` для отправки текстового сообщения пользователю.
+             * Устанавливает идентификатор чата для отправки сообщения в текущий чат.
+             */
             val sendMessage1 = SendMessage()
             sendMessage1.chatId = chatId.toString()
             val sendMessage2 = SendMessage()
@@ -123,24 +156,50 @@ class Bot : TelegramLongPollingBot() {
             val sendMessage3 = SendMessage()
             sendMessage3.chatId = chatId.toString()
 
+
+            /**
+             * Создает объект `SendPhoto` для отправки изображения в текущий чат.
+             * Устанавливает идентификатор чата, чтобы фото было отправлено нужному пользователю.
+             */
             val sendPhoto = SendPhoto()
             sendPhoto.chatId = chatId.toString()
             //sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/StoryBot/pics/Письмо.jpeg"))
             //sendPhoto.caption = "Text"
 
+            /**
+             * Создает объект `ReplyKeyboardMarkup` для добавления клавиатуры с кнопками.
+             * Опционально задает параметры:
+             * - `selective = true`: делает клавиатуру доступной только для определенных пользователей.
+             * - `resizeKeyboard = true`: растягивает клавиатуру на всю ширину экрана.
+             */
             val keyboardMarkup = ReplyKeyboardMarkup()
             keyboardMarkup.selective = true // Опционально: делать кнопки доступными только для текущего пользователя
             keyboardMarkup.resizeKeyboard = true // Опционально: сделать кнопки занимать всю ширину клавиатуры
 
+            /**
+             * Создает строку кнопок, которая будет добавлена на клавиатуру.
+             */
             val row = KeyboardRow()
 
+            /**
+             * Создает сообщение с встроенными кнопками.
+             * Устанавливает идентификатор чата для отправки сообщения в текущий чат.
+             */
             val inlineButtonsMessage = SendMessage()
             inlineButtonsMessage.chatId = update.message.chatId.toString()
             //inlineButtonsMessage.text = "Выберите опцию:"
 
+            /**
+             * Создает сообщение с изображением и встроенными кнопками.
+             * Устанавливает идентификатор чата для отправки изображения в текущий чат.
+             */
             val inlineButtonsMessageWithPhoto = SendPhoto()
             inlineButtonsMessageWithPhoto.chatId = update.message.chatId.toString()
 
+            /**
+             * Создает объект `InlineKeyboardMarkup` для добавления встроенных кнопок к сообщению.
+             * Создает строку кнопок `keyboardButtonsRow` для последующего добавления в разметку клавиатуры.
+             */
             val inlineKeyboardMarkup = InlineKeyboardMarkup()
             val keyboardButtonsRow: MutableList<InlineKeyboardButton> = ArrayList()
 
@@ -214,14 +273,35 @@ class Bot : TelegramLongPollingBot() {
                 }
             }
 
+
+            // Добавляем строку в клавиатуру
+            /**
+             * Добавляет строку кнопок `row` в клавиатуру `keyboardMarkup`.
+             * Привязывает клавиатуру к сообщению, чтобы пользователи могли взаимодействовать с ботом через кнопки.
+             */
             keyboardMarkup.keyboard = listOf(row)
             sendMessage1.replyMarkup = keyboardMarkup
 
+            /**
+             * Создает список строк для хранения кнопок в разметке встроенной клавиатуры.
+             * `rowList` содержит строки с кнопками, добавленными в `keyboardButtonsRow`.
+             */
             val rowList: MutableList<List<InlineKeyboardButton>> = ArrayList()
             rowList.add(keyboardButtonsRow)
 
+            /**
+             * Устанавливает разметку клавиатуры с встроенными кнопками в `inlineKeyboardMarkup`.
+             * Присоединяет клавиатуру к сообщению `inlineButtonsMessage`, чтобы пользователи могли
+             * выбирать опции, нажав на одну из встроенных кнопок.
+             */
             inlineKeyboardMarkup.keyboard = rowList
             inlineButtonsMessage.replyMarkup = inlineKeyboardMarkup
+
+            /**
+             * Устанавливает разметку клавиатуры с встроенными кнопками в `inlineButtonsMessageWithPhoto`.
+             * Добавляет разметку клавиатуры к сообщению с фотографией, чтобы пользователи могли
+             * взаимодействовать с кнопками под изображением.
+             */
             inlineButtonsMessageWithPhoto.replyMarkup = inlineKeyboardMarkup
 
             try {
@@ -258,32 +338,63 @@ class Bot : TelegramLongPollingBot() {
                             execute(sendMessage1)
                         }
                     }
+
                 }
             } catch (e: TelegramApiException) {
                 e.printStackTrace()
             }
         } else if (update.hasCallbackQuery()) {
+
+            /**
+             * Извлекает данные callback-запроса (данные, связанные с нажатием кнопки).
+             * Эти данные могут содержать идентификатор кнопки или команду.
+             */
             val callbackData = update.callbackQuery.data
+
+            /**
+             * Извлекает идентификатор чата из callback-запроса, чтобы знать, куда отправлять ответное сообщение.
+             */
             val chatId = update.callbackQuery.message.chatId
 
+            /**
+             * Создает объект `SendMessage` для отправки текстового сообщения в чат.
+             * Устанавливает идентификатор чата, чтобы сообщение было отправлено в нужный чат.
+             */
             val responseMessage = SendMessage()
             responseMessage.chatId = chatId.toString()
 
-
+            /**
+             * Обрабатывает нажатие кнопок с помощью условия `when`.
+             * В зависимости от данных callback-запроса (`callbackData`), отправляется
+             * соответствующее сообщение пользователю.
+             */
             when (callbackData) {
+                "BUTTON_1" -> responseMessage.text = "Вы нажали кнопку 1"
+                "BUTTON_2" -> responseMessage.text = "Вы нажали кнопку 2"
                 "PEREVESTI_PISMO" -> responseMessage.text = pismo
+
             }
+
 
             try {
                 execute(responseMessage)
             } catch (e: TelegramApiException) {
                 e.printStackTrace()
             }
+
         }
     }
 }
 
-
+/**
+ * Точка входа в приложение.
+ *
+ * Эта функция инициализирует и запускает Telegram-бота с использованием библиотеки `TelegramBotsApi`.
+ * В случае успешной регистрации бота, выводится сообщение "Бот запущен!".
+ * Если происходит ошибка при регистрации, исключение будет выведено в консоль.
+ *
+ * @throws TelegramApiException если при регистрации бота возникает ошибка.
+ */
 fun main() {
     val botsApi = TelegramBotsApi(DefaultBotSession::class.java)
     try {
