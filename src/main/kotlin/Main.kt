@@ -101,11 +101,20 @@ class Bot : TelegramLongPollingBot() {
     private val Glava2Text5 = "Попрощавшись с Доном Хосе, вы понимаете, что стоите перед выбором. От того, какой путь вы выберете, зависит то, что откроется вам в этих диких и неизведанных джунглях и с какими трудностями придётся столкнуться на пути к Амару. Выбирайте с умом. Каждый путь хранит в себе опасности и сокровища."
 
 
+    private val buttons = listOf("/start", "Зачилиться", "Ехать", "Отправиться в путешествие","Приступить к головоломке","Продолжить",
+        "И что мне делать?", "Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду", "Рандом")
+
+
     override fun onUpdateReceived(update: Update) {
         if (update.hasMessage() && update.message.hasText()) {
 
             val messageText = update.message.text
             val chatId = update.message.chatId
+
+            val errorMessage = SendMessage()
+            errorMessage.chatId = chatId.toString()
+            errorMessage.text = "Пожалуйста, нажимайте только на кнопки."
+
 
             val sendMessage1 = SendMessage()
             sendMessage1.chatId = chatId.toString()
@@ -216,34 +225,38 @@ class Bot : TelegramLongPollingBot() {
             inlineButtonsMessageWithPhoto.replyMarkup = inlineKeyboardMarkup
 
             try {
-                when (messageText) {
-                    "/start" -> {
-                        execute(sendMessage1)
-                        execute(inlineButtonsMessageWithPhoto)
-                    }
-                    "Зачилиться" -> execute(sendMessage1)
-                    "Ехать" -> execute(sendMessage1)
-                    "Отправиться в путешествие" -> execute(sendMessage1)
-                    "Приступить к головоломке" -> execute(sendMessage1)
-                    "Продолжить" -> {
-                        execute(sendMessage1)
-                        execute(sendMessage2)
-                    }
-                    "И что мне делать?" -> {
-                        execute(sendMessage1)
-                        execute(sendMessage2)
-                    }
-                    "Спасибо, Изабелла" -> {
-                        execute(sendMessage1)
-                        execute(sendMessage2)
-                    }
-                    "Давай" -> {
-                        execute(sendMessage1)
-                        execute(sendMessage2)
-                        execute(sendMessage3)
-                    }
-                    "Большое спасибо, не забуду" -> {
-                        execute(sendMessage1)
+                if (messageText !in buttons) {
+                    execute(errorMessage)
+                } else {
+                    when (messageText) {
+                        "/start" -> {
+                            execute(sendMessage1)
+                            execute(inlineButtonsMessageWithPhoto)
+                        }
+                        "Зачилиться" -> execute(sendMessage1)
+                        "Ехать" -> execute(sendMessage1)
+                        "Отправиться в путешествие" -> execute(sendMessage1)
+                        "Приступить к головоломке" -> execute(sendMessage1)
+                        "Продолжить" -> {
+                            execute(sendMessage1)
+                            execute(sendMessage2)
+                        }
+                        "И что мне делать?" -> {
+                            execute(sendMessage1)
+                            execute(sendMessage2)
+                        }
+                        "Спасибо, Изабелла" -> {
+                            execute(sendMessage1)
+                            execute(sendMessage2)
+                        }
+                        "Давай" -> {
+                            execute(sendMessage1)
+                            execute(sendMessage2)
+                            execute(sendMessage3)
+                        }
+                        "Большое спасибо, не забуду" -> {
+                            execute(sendMessage1)
+                        }
                     }
                 }
             } catch (e: TelegramApiException) {
