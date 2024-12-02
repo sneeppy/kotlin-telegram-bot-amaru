@@ -442,6 +442,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage6.text = Glava3Zmeya6
                     sendMessage7.text = Glava3Zmeya7
                     sendMessage8.text = Glava3Zmeya8
+
                     row.add("Глава 4")
                 }
                 "Пойти по тропе обезьян" -> {
@@ -452,12 +453,14 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage4.text = Glava3Monkey4
                     sendMessage5.text = Glava3Monkey5
                     sendMessage6.text = Glava3Monkey6
+
                     row.add("Глава 4")
                 }
                 "Путь ягуара" -> {
                     sendMessage1.text = eagleTrail
-                        row.add("Пойти по тропе орлов")
-                        row.add("Остаться на пути ягуара")
+
+                    row.add("Пойти по тропе орлов")
+                    row.add("Остаться на пути ягуара")
 
                 }
                 "Пойти по тропе орлов" -> {
@@ -469,6 +472,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage5.text = Glava3Eagle5
                     sendMessage6.text = Glava3Eagle6
                     sendMessage6.text = Glava3Eagle7
+
                     row.add("Глава 4")
                 }
                 "Остаться на пути ягуара" -> {
@@ -480,6 +484,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage5.text = Glava3Yaga5
                     sendMessage6.text = Glava3Yaga6
                     sendMessage7.text = Glava3Yaga7
+
                     row.add("Глава 4")
                 }
                 "Глава 4" -> {
@@ -489,6 +494,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage3.text = Glava4text3
                     sendMessage4.text = Glava4text4
                     sendMessage4.text = Glava4text5
+
                     row.add("Глава 5")
                 }
                 "Глава 5" -> {
@@ -500,6 +506,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage5.text = Glava5text5
                     sendMessage6.text = Glava5text6
                     sendMessage7.text = Glava5text7
+
                     row.add("Глава 6")
                 }
                 "Глава 6" -> {
@@ -509,6 +516,7 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage3.text = Glava6text3
                     sendMessage4.text = Glava6text4
                     sendMessage5.text = Glava6text5
+
                     row.add("Взять часть сокровищ для себя")
                     row.add("Взять обещанное для Дона Хосе")
                     row.add("Оставить сокровища")
@@ -737,6 +745,7 @@ class Bot : TelegramLongPollingBot() {
                         }
                         "Взять часть сокровищ для себя" -> {
                             execute(sendMessage1)
+
                         }
                         "Взять обещанное для Дона Хосе" -> {
                             execute(sendMessage1)
