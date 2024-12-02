@@ -225,7 +225,7 @@ class Bot : TelegramLongPollingBot() {
             "Годы спустя твоё решение становится легендой, а джунгли Амазонки продолжают скрывать секреты этого удивительного города. Ты понимаешь, что выбрал гармонию и равновесие, сохранив тайну Амару для будущих поколений.\n"
     private val EbaniyVopros = "Дон Хосе рассказал вам о более лёгком пути. Желаете ли вы продолжить путь по нему?"
     private val buttons = listOf("/start", "Зачилиться", "Ехать", "Отправиться в путешествие","Приступить к головоломке","Продолжить",
-        "И что мне делать?", "Глава 4","Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду", "Путь змеи", "Путь ягуара", "Хочу!", "Не хочу!", "Очень хочу!", "Очень не хочу!")
+        "И что мне делать?", "Глава 4", "Глава 5", "Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду", "Путь змеи", "Путь ягуара", "Хочу!", "Не хочу!", "Очень хочу!", "Очень не хочу!")
 
 
     /**
@@ -449,6 +449,17 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage3.text = Glava4text3
                     sendMessage4.text = Glava4text4
                     sendMessage4.text = Glava4text5
+                    row.add("Глава 5")
+                }
+                "Глава 5" -> {
+                    sendMessage1.text = Glava5text1
+                    sendMessage2.text = Glava5text2
+                    sendMessage3.text = Glava5text3
+                    sendMessage4.text = Glava5text4
+                    sendMessage5.text = Glava5text5
+                    sendMessage6.text = Glava5text6
+                    sendMessage7.text = Glava5text7
+                    row.add("Глава 6")
                 }
             }
 
@@ -564,6 +575,15 @@ class Bot : TelegramLongPollingBot() {
                             execute(sendMessage3)
                             execute(sendMessage4)
                             execute(sendMessage5)
+                        }
+                        "Глава 5" -> {
+                            execute(sendMessage1)
+                            execute(sendMessage2)
+                            execute(sendMessage3)
+                            execute(sendMessage4)
+                            execute(sendMessage5)
+                            execute(sendMessage6)
+                            execute(sendMessage7)
                         }
                     }
 
