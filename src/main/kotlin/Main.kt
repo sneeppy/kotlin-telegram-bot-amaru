@@ -247,7 +247,7 @@ class Bot : TelegramLongPollingBot() {
 
     private val buttons = listOf("/start", "Зачилиться", "Ехать", "Отправиться в путешествие","Приступить к головоломке","Глава 2",
         "И что мне делать?", "Глава 4", "Глава 5", "Глава 6", "Взять часть сокровищ для себя", "Взять обещанное для Дона Хосе",
-        "Оставить сокровища", "Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду",
+        "Оставить сокровища", "Спасибо, Изабелла", "Давай", "Большое спасибо, не забуду", "Конец",
         "Путь змеи", "Путь ягуара", "Остаться на пути змеи", "Пойти по тропе обезьян", "Остаться на пути ягуара", "Пойти по тропе орлов")
 
 
@@ -309,8 +309,6 @@ class Bot : TelegramLongPollingBot() {
              */
             val sendPhoto = SendPhoto()
             sendPhoto.chatId = chatId.toString()
-            //sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/StoryBot/pics/Письмо.jpeg"))
-            //sendPhoto.caption = "Text"
 
             /**
              * Создает объект `ReplyKeyboardMarkup` для добавления клавиатуры с кнопками.
@@ -358,7 +356,7 @@ class Bot : TelegramLongPollingBot() {
                     row.add("Зачилиться")
 
                     inlineButtonsMessageWithPhoto.photo =
-                        InputFile(java.io.File("C:/Users/Павел/IdeaProjects/Amaru/pics/Письмо.jpeg"))
+                        InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Письмо.jpeg"))
 
                     val button1 = InlineKeyboardButton()
                     button1.text = "Перевести в текст"
@@ -378,11 +376,11 @@ class Bot : TelegramLongPollingBot() {
                 }
                 "Отправиться в путешествие" -> {
                     sendMessage0.text = Glava1
-                    sendMessage0.enableMarkdown(true)
                     sendMessage1.text = Glava1Text1
                     sendMessage2.text = Glava1Text2
                     sendMessage3.text = Glava1Text3
-                    sendMessage4.text = Glava1Text4
+                    sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Карта 1.jpg"))
+                    sendPhoto.caption = Glava1Text4
                     sendMessage5.text = Glava1Text5
                     sendMessage6.text = Glava1Text6
                     sendMessage6.text = Glava1Text7
@@ -394,7 +392,8 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage1.text = Glava2Text1
                     sendMessage2.text = Glava2Text2
                     sendMessage3.text = Glava2Izabella
-                    sendMessage4.text = Glava2Text3
+                    sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Амазонка.jpg"))
+                    sendPhoto.caption = Glava2Text3
                     sendMessage5.text = Glava2Text4
 
                     row.add("И что мне делать?")
@@ -403,14 +402,16 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage1.text = Glava2Text5
                     sendMessage2.text = Glava2Text6
                     sendMessage3.text = Glava2Text7
-                    sendMessage4.text = Glava2Text8
+                    sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Карта 2.jpg"))
+                    sendPhoto.caption = Glava2Text8
 
                     row.add("Спасибо, Изабелла")
                 }
                 "Спасибо, Изабелла" -> {
                     sendMessage1.text = Glava2Text9
                     sendMessage2.text = Glava2Don
-                    sendMessage3.text = Glava2Text10
+                    sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Долг Хосе.jpg"))
+                    sendPhoto.caption = Glava2Text10
                     sendMessage4.text = Glava2Text11
                     sendMessage5.text = Glava2Text12
 
@@ -420,7 +421,8 @@ class Bot : TelegramLongPollingBot() {
                     sendMessage1.text = Glava2Text13
                     sendMessage2.text = Glava2Text14
                     sendMessage3.text = Glava2Text15
-                    sendMessage4.text = Glava2Text16
+                    sendPhoto.photo = InputFile(java.io.File("C:/Users/Павел/IdeaProjects/kotlin-telegram-bot-amaru/pics/Карта 3.jpg"))
+                    sendPhoto.caption = Glava2Text16
 
                     row.add("Большое спасибо, не забуду")
                 }
@@ -592,57 +594,39 @@ class Bot : TelegramLongPollingBot() {
                         "Отправиться в путешествие" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
-                            execute(sendMessage4)
-                            Thread.sleep(1000)
+                            execute(sendPhoto)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
-                            Thread.sleep(1000)
                             execute(sendMessage7)
                         }
                         "Глава 2" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            execute(sendMessage4)
-                            Thread.sleep(2000)
+                            execute(sendPhoto)
                             execute(sendMessage5)
                         }
                         "И что мне делать?" -> {
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
-                            execute(sendMessage4)
+                            execute(sendPhoto)
                         }
                         "Спасибо, Изабелла" -> {
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            execute(sendMessage3)
-                            Thread.sleep(2000)
+                            execute(sendPhoto)
                             execute(sendMessage4)
-                            Thread.sleep(2000)
                             execute(sendMessage5)
                         }
                         "Давай" -> {
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(3000)
                             execute(sendMessage3)
-                            Thread.sleep(2000)
-                            execute(sendMessage4)
+                            execute(sendPhoto)
                         }
                         "Большое спасибо, не забуду" -> {
                             execute(sendMessage1)
@@ -653,33 +637,21 @@ class Bot : TelegramLongPollingBot() {
                         "Остаться на пути змеи" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(3000)
                             execute(sendMessage3)
-                            Thread.sleep(2000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
-                            Thread.sleep(1000)
                             execute(sendMessage7)
-                            Thread.sleep(1000)
                             execute(sendMessage8)
                         }
                         "Пойти по тропе обезьян" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
                         }
                         "Путь ягуара" -> {
@@ -688,73 +660,47 @@ class Bot : TelegramLongPollingBot() {
                         "Пойти по тропе орлов" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
-                            Thread.sleep(1000)
                             execute(sendMessage7)
                         }
                         "Остаться на пути ягуара" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
-                            Thread.sleep(1000)
                             execute(sendMessage7)
                         }
                         "Глава 4" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
                         }
                         "Глава 5" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
-                            Thread.sleep(1000)
                             execute(sendMessage6)
-                            Thread.sleep(1000)
                             execute(sendMessage7)
                         }
                         "Глава 6" -> {
                             execute(sendMessage0)
                             execute(sendMessage1)
-                            Thread.sleep(3000)
                             execute(sendMessage2)
-                            Thread.sleep(2000)
                             execute(sendMessage3)
-                            Thread.sleep(1000)
                             execute(sendMessage4)
-                            Thread.sleep(1000)
                             execute(sendMessage5)
                         }
                         "Взять часть сокровищ для себя" -> {
